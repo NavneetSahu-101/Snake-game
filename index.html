@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#070b12">
+    <title>Neon Snake | Arcade</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app">
+        <header class="header">
+            <div class="brand"><span class="brand-icon">✳</span> NEON ARCADE</div>
+            <h1>SNAKE<span>_</span></h1>
+            <p class="subtitle">EAT • GROW • SURVIVE</p>
+        </header>
+
+        <section class="stats">
+            <div class="stat">
+                <span class="stat-label">SCORE</span>
+                <strong id="score">000</strong>
+            </div>
+            <div class="stat">
+                <span class="stat-label">BEST</span>
+                <strong id="high-score">000</strong>
+            </div>
+            <div class="stat">
+                <span class="stat-label">LEVEL</span>
+                <strong id="level">01</strong>
+            </div>
+        </section>
+
+        <section class="console">
+            <div class="toolbar">
+                <div class="status">
+                    <span id="status-dot" class="dot"></span>
+                    <span id="status">SYSTEM READY</span>
+                </div>
+
+                <label class="difficulty">
+                    <span>MODE</span>
+                    <select id="difficulty" aria-label="Difficulty">
+                        <option value="easy">EASY</option>
+                        <option value="medium" selected>MEDIUM</option>
+                        <option value="hard">HARD</option>
+                    </select>
+                </label>
+            </div>
+
+            <div class="board-wrap">
+                <canvas id="game-board" width="400" height="400"
+                    aria-label="Snake game board"></canvas>
+
+                <div id="overlay" class="overlay">
+                    <div class="overlay-symbol" id="overlay-symbol">▶</div>
+                    <h2 id="message-title">READY PLAYER ONE?</h2>
+                    <p id="message-text">Grab the neon food. Avoid the walls and yourself.</p>
+                    <button id="start-button" class="primary-btn">START GAME <span>→</span></button>
+                </div>
+            </div>
+
+            <div class="console-footer">
+                <span><i class="legend-snake"></i> SNAKE</span>
+                <span><i class="legend-food"></i> ENERGY</span>
+                <span>GRID 20 × 20</span>
+            </div>
+        </section>
+
+        <section class="actions">
+            <button id="pause-button" disabled>Ⅱ <span>PAUSE</span></button>
+            <button id="restart-button">↻ <span>RESTART</span></button>
+            <button id="sound-button" aria-pressed="true">♫ <span>SOUND ON</span></button>
+        </section>
+
+        <section class="mobile-controls" aria-label="Touch controls">
+            <p>TOUCH CONTROLS</p>
+            <div class="dpad">
+                <span></span>
+                <button data-dir="up" aria-label="Move up">▲</button>
+                <span></span>
+                <button data-dir="left" aria-label="Move left">◀</button>
+                <button data-dir="down" aria-label="Move down">▼</button>
+                <button data-dir="right" aria-label="Move right">▶</button>
+            </div>
+        </section>
+
+        <footer>
+            <span>INSERT COIN? NAH.</span>
+            <span>BUILT FOR THE HIGH SCORE.</span>
+        </footer>
+    </main>
+</body>
+</html>

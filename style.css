@@ -1,0 +1,412 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg: #070b12;
+    --panel: #0d1420;
+    --border: #202e40;
+    --green: #9dff00;
+    --cyan: #00f5ff;
+    --pink: #ff3cac;
+    --text: #e8f1ff;
+    --muted: #7889a3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    padding: 28px 16px;
+    background:
+        radial-gradient(ellipse at 50% 0%, #142437 0%, transparent 60%),
+        var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', Arial, sans-serif;
+}
+
+button, select {
+    font: inherit;
+}
+
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.brand {
+    color: var(--cyan);
+    font: 600 11px 'Orbitron', monospace;
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+}
+
+.brand-icon {
+    color: var(--green);
+    font-size: 17px;
+    margin-right: 5px;
+}
+
+h1 {
+    font: 800 clamp(42px, 10vw, 64px)/1.1 'Orbitron', monospace;
+    letter-spacing: 3px;
+    text-shadow: 0 0 24px #9dff0035;
+}
+
+h1 span {
+    color: var(--green);
+    animation: blink 1s steps(2, start) infinite;
+}
+
+.subtitle {
+    margin-top: 10px;
+    color: var(--muted);
+    font: 600 12px 'Orbitron', monospace;
+    letter-spacing: 4px;
+}
+
+@keyframes blink {
+    to { opacity: 0.25; }
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.stat {
+    min-width: 0;
+    padding: 13px 8px;
+    text-align: center;
+    background: linear-gradient(145deg, #111c2a, #0a101a);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.stat-label {
+    display: block;
+    color: var(--muted);
+    font: 500 9px 'Orbitron', monospace;
+    letter-spacing: 2px;
+}
+
+.stat strong {
+    display: block;
+    margin-top: 7px;
+    color: var(--green);
+    font: 700 clamp(21px, 6vw, 29px) 'Orbitron', monospace;
+    text-shadow: 0 0 12px #9dff0030;
+}
+
+.console {
+    padding: 13px;
+    border: 1px solid #293a50;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #101a29, #080e17);
+    box-shadow: 0 20px 60px #0008, 0 0 30px #00f5ff08;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 1px 2px 13px;
+}
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font: 600 10px 'Orbitron', monospace;
+    letter-spacing: 1px;
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+}
+
+.dot.paused {
+    background: #ffcc55;
+    box-shadow: 0 0 10px #ffcc55;
+}
+
+.dot.over {
+    background: var(--pink);
+    box-shadow: 0 0 10px var(--pink);
+}
+
+.difficulty {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font: 500 9px 'Orbitron', monospace;
+}
+
+.difficulty select {
+    max-width: 100px;
+    padding: 7px 5px;
+    color: var(--cyan);
+    background: #0b1420;
+    border: 1px solid #304357;
+    border-radius: 5px;
+    outline: none;
+    font: 600 9px 'Orbitron', monospace;
+}
+
+.board-wrap {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    border: 1px solid #20374a;
+    border-radius: 6px;
+    background: #060c13;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    text-align: center;
+    background: #050a12d9;
+    backdrop-filter: blur(3px);
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay-symbol {
+    margin-bottom: 16px;
+    color: var(--green);
+    font-size: 30px;
+    text-shadow: 0 0 22px #9dff00aa;
+}
+
+.overlay h2 {
+    max-width: 100%;
+    color: var(--text);
+    font: 700 clamp(17px, 4.8vw, 23px) 'Orbitron', monospace;
+    line-height: 1.5;
+}
+
+.overlay p {
+    max-width: 280px;
+    margin: 12px 0 22px;
+    color: #a2b1c7;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.primary-btn {
+    padding: 13px 18px;
+    color: #091008;
+    background: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 5px;
+    font: 700 11px 'Orbitron', monospace;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #9dff0020;
+}
+
+.primary-btn span {
+    padding-left: 8px;
+}
+
+.primary-btn:hover {
+    background: #c2ff65;
+    box-shadow: 0 0 25px #9dff0055;
+}
+
+.console-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 13px 2px 1px;
+    color: var(--muted);
+    font: 500 8px 'Orbitron', monospace;
+    letter-spacing: 0.5px;
+}
+
+.console-footer span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.legend-snake, .legend-food {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 2px;
+}
+
+.legend-snake {
+    background: var(--green);
+    box-shadow: 0 0 7px var(--green);
+}
+
+.legend-food {
+    background: var(--pink);
+    box-shadow: 0 0 7px var(--pink);
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 9px;
+    margin-top: 12px;
+}
+
+.actions button {
+    padding: 12px 5px;
+    color: var(--text);
+    background: #101a28;
+    border: 1px solid #293b50;
+    border-radius: 6px;
+    font: 600 10px 'Orbitron', monospace;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.actions button:hover:not(:disabled) {
+    color: var(--cyan);
+    border-color: var(--cyan);
+}
+
+.actions button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.mobile-controls {
+    margin-top: 22px;
+    text-align: center;
+}
+
+.mobile-controls > p {
+    margin-bottom: 12px;
+    color: var(--muted);
+    font: 500 9px 'Orbitron', monospace;
+    letter-spacing: 2px;
+}
+
+.dpad {
+    display: grid;
+    grid-template-columns: repeat(3, 56px);
+    grid-template-rows: repeat(2, 48px);
+    justify-content: center;
+    gap: 7px;
+}
+
+.dpad button {
+    color: var(--green);
+    background: #101a28;
+    border: 1px solid #31465b;
+    border-radius: 8px;
+    font-size: 18px;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.dpad button:active {
+    color: #071009;
+    background: var(--green);
+    box-shadow: 0 0 18px #9dff0044;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 27px;
+    color: #53637a;
+    font: 500 8px 'Orbitron', monospace;
+    letter-spacing: 0.5px;
+}
+
+button:focus-visible, select:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 3px;
+}
+
+@media (min-width: 700px) {
+    body {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+
+    .console {
+        padding: 17px;
+    }
+
+    .stat {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        padding: 20px 10px;
+    }
+
+    .console {
+        padding: 9px;
+    }
+
+    .status {
+        font-size: 8px;
+    }
+
+    .difficulty {
+        gap: 4px;
+    }
+
+    .console-footer {
+        font-size: 7px;
+    }
+
+    .actions button {
+        font-size: 9px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
